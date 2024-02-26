@@ -1,0 +1,10 @@
+.navBar{
+  display: flex;
+  justify-content: center;
+  gap:10px;
+
+}
+
+.showCategories{
+  position: absolute;
+}
