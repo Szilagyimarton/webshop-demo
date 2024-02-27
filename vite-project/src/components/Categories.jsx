@@ -1,6 +1,8 @@
 import  {  useEffect, useState } from 'react'
 import Product from './Product'
 
+import './Categories.css'
+
 function Categories({selectedCat,products}) {
  
   const [category, setCategory] = useState([])

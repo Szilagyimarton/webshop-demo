@@ -1,0 +1,62 @@
+.checkout{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  
+}
+.cartInfo > h4{
+  text-align: center;
+  padding: 10px;
+}
+.cartInfo > p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px;
+}
+.cartInfo ul{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  list-style-type: none;
+  border: 1px solid;
+  padding: 10px;
+}
+.shippingInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 35%;
+
+}
+
+.shippingInfo > input{
+  padding: 10px;
+  width: 100%;
+  font-weight: 600;
+}
+input::placeholder{
+  color: grey;
+  font-weight: 400;
+  opacity: 0.6;
+}
+.checkboxDiv{
+  display: flex;
+  gap: 10px;
+}
+.shippingInfo > button {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.error{
+  color: red;
+  text-align: center;
+  padding: 10px;
+}

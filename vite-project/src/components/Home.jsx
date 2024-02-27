@@ -24,7 +24,10 @@ function Home({products}) {
 
   return (
       <>
-        <input type="text" name="searchbar" id="searchbar" /* value={searchString} */ onChange={handleSearching} /><div className="home">
+      <div className="searchbar">
+        <input type="text" name="searchbar" id="searchbar" /* value={searchString} */ onChange={handleSearching} placeholder="Search.." />
+      </div>
+      <div className="home">
         {products && filteredProducts && filteredProducts.map((product, index) => <Product product={product} key={index} />)}
       </div>
     </>

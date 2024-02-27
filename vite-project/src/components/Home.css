@@ -4,3 +4,15 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+.searchbar{
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+input[name="searchbar"]{
+  max-width: 200px;
+  width: 100%;
+  padding: 10px;
+
+
+}

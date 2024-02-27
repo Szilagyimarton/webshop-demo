@@ -2,6 +2,7 @@ import Dialog from '@mui/material/Dialog';
 import { useNavigate } from 'react-router';
 import { CartContext } from '../App';
 import { useContext } from 'react';
+import { Button, DialogTitle, List, ListItem } from '@mui/material';
 
 function CheckoutModal({open, setShowModal, state}) {
   const navigate = useNavigate()
@@ -15,21 +16,21 @@ function CheckoutModal({open, setShowModal, state}) {
     setShowModal(false)
   }
   return (
-    <Dialog open={open}>
-      <h1>Summary:</h1>
-      <h2>Delivery details </h2>
-      <ul className='deliveryData'>
-        <li>First Name: {state.firstName}</li>
-        <li>Last Name: {state.lastName}</li>
-        <li>Country: {state.country}</li>
-        <li>ZIP: {state.zip}</li>
-        <li>Address: {state.address}</li>
-      </ul>
-      <h3>Your products</h3>
-      <ul className='orderedProducts'>{cart.map((el,i) => <li key={i}>{el.item.title} x {el.quantity}</li>)}</ul>
+    <Dialog open={open} sx={{width:2000}}>
+      <DialogTitle>Summary:</DialogTitle>
+      <DialogTitle>Delivery details </DialogTitle>
+      <List className='deliveryData'>
+        <ListItem>First Name: {state.firstName}</ListItem>
+        <ListItem>Last Name: {state.lastName}</ListItem>
+        <ListItem>Country: {state.country}</ListItem>
+        <ListItem>ZIP: {state.zip}</ListItem>
+        <ListItem>Address: {state.address}</ListItem>
+      </List>
+      <DialogTitle>Your products</DialogTitle>
+      <List className='orderedProducts'>{cart.map((el,i) => <ListItem key={i}>{el.item.title} x {el.quantity}</ListItem>)}</List>
 
-      <button onClick={handleSend }>Send</button>
-      <button onClick={handleBack }>Back</button>
+      <Button onClick={handleSend }>Send</Button>
+      <Button onClick={handleBack }>Back</Button>
     </Dialog>
   )
 }

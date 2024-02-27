@@ -1,7 +1,9 @@
-import React, { useContext, useReducer, useState } from 'react'
+import { useContext, useReducer, useState } from 'react'
 import { CartContext } from '../App'
 import totalPrice from './functions/totalPrice'
 import CheckoutModal from './CheckoutModal'
+
+import './Checkout.css'
 
 const initalState = {
   firstName : "" ,
@@ -34,6 +36,7 @@ function Checkout() {
   const { cart, setCart } = useContext(CartContext)
   const [ state, dispatch] = useReducer(reducer,initalState)
   const [showModal, setShowModal] = useState(false)
+  const [ filledForm, setFilledForm] = useState(true)
 
   const handleInputChange = (e) => {
     dispatch({
@@ -51,12 +54,18 @@ function Checkout() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setShowModal(true)
+    if(state.checkbox === false || state.firstName === "" || state.lastName === "" || state.country === "" || state.zip === "" || state.address === ""){
+      setFilledForm(false)
+    }else{
+      setFilledForm(true)
+      setShowModal(true)
+    }
   }
   return (
     <div className='checkout'>
     <div className='cartInfo'>
-      <ul>Your products: {cart.map((el, i) => <li key={i}>{el.item.title} x {el.quantity}</li>)}</ul>
+      <h4>Your products: </h4>
+      <ul>{cart.map((el, i) => <li key={i}>{el.item.title} x {el.quantity}</li>)}</ul>
       <p>Total: {totalPrice(cart)}$ </p>
     </div>
     <form className='shippingInfo'>
@@ -65,7 +74,11 @@ function Checkout() {
       <input type='text' id='country' name='country' placeholder='Country' onChange={handleInputChange}/>
       <input type='text' id='zip' name='zip' placeholder='ZIP' onChange={handleInputChange} />
       <input type='text' id='address' name='address' placeholder='Address' onChange={handleInputChange}/>
-      <input type='checkbox' id="checkbox" name='checkbox' onChange={handleCheckbox} />
+      <div className='checkboxDiv'>
+        <input type='checkbox' id="checkbox" name='checkbox' onChange={handleCheckbox} required="required"/>
+        <label htmlFor="checkbox">I checked my order!</label>
+        </div>
+      <p className='error' style={{visibility: !filledForm ? "visible" : "hidden"}}>All field is required!</p>
       <button onClick={handleSubmit}>Send</button>
     </form>
       <CheckoutModal open={showModal} setShowModal={setShowModal} state={state}/>
