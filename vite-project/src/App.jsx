@@ -13,8 +13,8 @@ function App() {
   const [products, setProducts] = useState(null)
   const [selectedCat,setSelectedCat] = useState()
   const [cart, setCart] = useState([])
+  console.log(cart)
 
-console.log(cart)
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then(res => res.json())

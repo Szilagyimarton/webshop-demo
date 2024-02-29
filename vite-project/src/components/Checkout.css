@@ -48,15 +48,10 @@ input::placeholder{
   display: flex;
   gap: 10px;
 }
-.shippingInfo > button {
+/* .shippingInfo > button {
   width: 60px;
   height: 30px;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-.error{
-  color: red;
-  text-align: center;
-  padding: 10px;
-}
+} */

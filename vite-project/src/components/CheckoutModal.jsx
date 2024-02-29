@@ -1,37 +1,54 @@
-import Dialog from '@mui/material/Dialog';
+
 import { useNavigate } from 'react-router';
 import { CartContext } from '../App';
-import { useContext } from 'react';
-import { Button, DialogTitle, List, ListItem } from '@mui/material';
+import { useContext, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import ListGroup from 'react-bootstrap/ListGroup';
 
-function CheckoutModal({open, setShowModal, state}) {
+
+
+function CheckoutModal({show, setShowModal, state}) {
   const navigate = useNavigate()
   const {cart, setCart} = useContext(CartContext)
+  const [send, setSend] = useState(false)
   const handleSend = () => {
-    setShowModal(false)
     setCart([])
-    navigate("/")
+    setSend(true)
+    setTimeout(() => {
+      setShowModal(false)
+      navigate("/")
+    },1500)
   }
   const handleBack = () => {
     setShowModal(false)
   }
   return (
-    <Dialog open={open} sx={{width:2000}}>
-      <DialogTitle>Summary:</DialogTitle>
-      <DialogTitle>Delivery details </DialogTitle>
-      <List className='deliveryData'>
-        <ListItem>First Name: {state.firstName}</ListItem>
-        <ListItem>Last Name: {state.lastName}</ListItem>
-        <ListItem>Country: {state.country}</ListItem>
-        <ListItem>ZIP: {state.zip}</ListItem>
-        <ListItem>Address: {state.address}</ListItem>
-      </List>
-      <DialogTitle>Your products</DialogTitle>
-      <List className='orderedProducts'>{cart.map((el,i) => <ListItem key={i}>{el.item.title} x {el.quantity}</ListItem>)}</List>
+    <Modal show={show} size="lg" centered >
+      <Modal.Header>
+        <Modal.Title>{!send ? "Summary:" : null}</Modal.Title>
+        <Modal.Title>{!send ? "Delivery details" : null }</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      {!send ? 
+        <ListGroup className='deliveryData'>
+        <ListGroup.Item>First Name: {state.firstName}</ListGroup.Item>
+        <ListGroup.Item>Last Name: {state.lastName}</ListGroup.Item>
+        <ListGroup.Item>Country: {state.country}</ListGroup.Item>
+        <ListGroup.Item>ZIP: {state.zip}</ListGroup.Item>
+        <ListGroup.Item>Address: {state.address}</ListGroup.Item>
+      </ListGroup>
+        :
+        "Thanks for your order!"}
 
-      <Button onClick={handleSend }>Send</Button>
-      <Button onClick={handleBack }>Back</Button>
-    </Dialog>
+      {!send ? <><Modal.Title>Your products</Modal.Title><ListGroup className='orderedProducts'>{cart.map((el, i) => <ListGroup.Item key={i}>{el.item.title} x {el.quantity}</ListGroup.Item>)}</ListGroup></>
+      : null}
+     </Modal.Body>
+     <Modal.Footer>
+{   !send ?
+      <><Button variant='primary' onClick={handleSend}>Send</Button><Button variant="secondary" onClick={handleBack}>Back</Button></> : null}
+     </Modal.Footer> 
+    </Modal>
   )
 }
 

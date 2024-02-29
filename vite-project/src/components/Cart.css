@@ -15,34 +15,21 @@
   width: 100%;
   gap: 10px;
 }
-.quantity{
+.quantityCart{
   display: flex;
-  gap: 0 5px;
+  align-items: center;
   justify-content: center;
+  margin: 5px;
+  gap: 5px;
+  margin-left: 15px;
 }
-.quantity button, .quantity p{
-  padding: 5px;
-  width: 30px;
-  text-align: center;
-  border: none;
-}
-.cartElement{
- display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
- width: 100%;
- align-items: center;
- border: 1px dotted black;
- padding: 10px;
-}
-.cartElement > h4{
-  font-size: 1rem;
+.quantityCart > p{
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
-.totalPrice{
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-.goToCheckOut > button{
-  font-size: 1.5rem;
-  padding: 10px;
+
+.cartElement > li{
+  width: 100%;
 }

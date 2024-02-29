@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router'
 import totalPrice from './functions/totalPrice'
 
 import './Cart.css'
+import { Button, ListGroup } from 'react-bootstrap'
 
 function Cart() {
 const { cart, setCart} = useContext(CartContext)
@@ -24,25 +25,26 @@ useEffect(() => {
 
 const handleCheckout = () => {
   if(cartIsEmpty){
-   return
+   navigate("/")
   }else{
-       setCheckout(true)
+     setCheckout(true)
   }
 }
-console.log(cart.length)
   
 return (
     <div className='cart'>
       <div className='cartElements'>
         <h3>Your orders:</h3>
-        {cart.map((el,i) =><CartElement key={i} product={el} />)}
+        <ListGroup as="ol" numbered>
+          {cart.map((el,i) =><CartElement key={i} product={el} />)}
+        </ListGroup>
       </div>
       <div className='totalPrice'>
         <p>Total: {total}$ </p>
       </div>
       <div className='goToCheckOut'>
         <p className='error' style={{visibility: cartIsEmpty ? "visible" : "hidden"}}>Your cart is empty!</p>
-        <button onClick={handleCheckout}>Go To Checkout</button>
+        <Button variant="primary" onClick={handleCheckout}>{cartIsEmpty ? "Back to the shop" :  "Go To Checkout"}</Button>
       </div>
       </div>
   )

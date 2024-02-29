@@ -1,22 +1,31 @@
-export default function handleQuantity  (e,cart,setCart,product)  {
-  if(e.target.className === "minus"){
-    
+import RemoveItemFromCart from "./RemoveItemFromCart"
+
+
+export default function handleQuantity  (e,cart,setCart,product,setQuantity)  {   
+  if(e.target.innerHTML === "-"){
+    setCart(prevCart => {
+      const updatedCart = prevCart.map(cartEl => {
+        if (cartEl.item.id === product.id && cartEl.quantity === 1) {
+          return null
+        } else if (cartEl.item.id === product.id) {
+          setQuantity(prev => prev -1 )
+          return { ...cartEl, quantity: cartEl.quantity - 1 };
+        } else {
+          return cartEl;
+        }
+      });
+      return updatedCart.filter(cartEl => cartEl !== null);
+    });
+  }
+  if(e.target.innerHTML === "+"){
     setCart(cart.map((cartEl) => {
-       return cartEl.item.id === product.id
-      ?
-      { ...cartEl, quantity: cartEl.quantity === 1 ? cartEl.quantity : cartEl.quantity -1 }
-      :
-      cartEl
+      if(cartEl.item.id === product.id){
+        setQuantity(prev => prev + 1 )
+        return { ...cartEl, quantity: cartEl.quantity + 1 }
+      }else{
+      return cartEl
+     }
     }))
   }
-  if(e.target.className === "plus"){
-    setCart(cart.map((cartEl) => {
-      console.log(product.id)
-      return cartEl.item.id === product.id
-      ?
-      { ...cartEl, quantity: cartEl.quantity + 1 }
-      :
-      cartEl
-    }))
-  }
+
 }

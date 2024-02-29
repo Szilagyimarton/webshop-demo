@@ -1,8 +1,7 @@
 import {  useEffect,  useState } from "react"
 import Product from "./Product"
 import './Home.css'
-
-
+import Form from 'react-bootstrap/Form';
 function Home({products}) {
 
   const [searchString, setSearchString] = useState("")
@@ -25,7 +24,7 @@ function Home({products}) {
   return (
       <>
       <div className="searchbar">
-        <input type="text" name="searchbar" id="searchbar" /* value={searchString} */ onChange={handleSearching} placeholder="Search.." />
+        <Form.Control type="text" name="searchbar" id="searchbar" /* value={searchString} */ onChange={handleSearching} placeholder="Search.." />
       </div>
       <div className="home">
         {products && filteredProducts && filteredProducts.map((product, index) => <Product product={product} key={index} />)}
