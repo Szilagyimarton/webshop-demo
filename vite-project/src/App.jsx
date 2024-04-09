@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import './App.css'
 import Home from "./components/Home";
 import Categories from "./components/Categories";
@@ -7,6 +6,7 @@ import Cart from "./components/Cart";
 import NavBar from "./components/NavBar";
 import { createContext, useEffect, useState } from "react";
 import Checkout from "./components/Checkout";
+import Loading from "./components/Loading";
 
 export const CartContext = createContext()
 function App() {
@@ -24,6 +24,8 @@ function App() {
   }, [])
 
   return (
+    products
+    ?
     <>
     <CartContext.Provider value={{cart,setCart}} >
      <BrowserRouter >
@@ -37,6 +39,8 @@ function App() {
     </BrowserRouter>
          </CartContext.Provider>
     </>
+    :
+    <Loading />
   )
 }
 

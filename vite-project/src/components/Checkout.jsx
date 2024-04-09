@@ -70,6 +70,7 @@ function Checkout() {
   return (
     <div className='checkout'>
     <div className='cartInfo'>
+      <Alert variant='danger'>This is a demo webshop! Please don't give any real data of yours! </Alert>
       <h4>Your products: </h4>
       <ListGroup as="ol" numbered>{cart.map((el, i) => <CartElement key={i} product={el}/>)}</ListGroup>
       <p>Total: {totalPrice(cart)}$ </p>

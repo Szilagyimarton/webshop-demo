@@ -21,9 +21,9 @@ const [quant, setQuantity] = useState(1)
         </div>
        
       <div className="quantityCart">
-        <Button variant="outline-secondary" onClick={(e) => handleQuantity(e, cart, setCart, product.item,setQuantity)}>-</Button>
+        <Button variant="outline-danger" onClick={(e) => handleQuantity(e, cart, setCart, product.item,setQuantity)}>-</Button>
         <p>{product.quantity}</p>
-        <Button variant="outline-secondary" onClick={(e) => handleQuantity(e, cart, setCart, product.item, setQuantity)}>+</Button>
+        <Button variant="outline-primary" onClick={(e) => handleQuantity(e, cart, setCart, product.item, setQuantity)}>+</Button>
    
         <span  className="material-symbols-outlined" onClick={() => RemoveItemFromCart(product.item, cart, setCart)}>delete</span>
       </div>

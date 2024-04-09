@@ -39,7 +39,7 @@ function CheckoutModal({show, setShowModal, state}) {
         <ListGroup.Item>Address: {state.address}</ListGroup.Item>
       </ListGroup>
         :
-        "Thanks for your order!"}
+        "Thanks for your order!" }
 
       {!send ? <><Modal.Title>Your products</Modal.Title><ListGroup className='orderedProducts'>{cart.map((el, i) => <ListGroup.Item key={i}>{el.item.title} x {el.quantity}</ListGroup.Item>)}</ListGroup></>
       : null}

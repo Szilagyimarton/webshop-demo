@@ -3,5 +3,6 @@
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 10px 0
+  margin: 10px 0;
+  padding:10px
 }
